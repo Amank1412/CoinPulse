@@ -1,0 +1,89 @@
+.coin.container{
+  max-width: 1100px;
+  margin: 40px auto;
+  padding: 20px;
+}
+
+.coin-header{
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.coin-header img{ width: 32px; height: 32px; }
+.coin-header h1{ 
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 32px;
+  font-weight: 700;
+  color: #ffffff;
+}
+.coin-header h1 span{ 
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  color: #999;
+  text-transform: uppercase;
+}
+
+.coin-stats{
+  margin-top: 24px;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0,1fr));
+  gap: 16px;
+  background: rgba(20, 25, 35, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  padding: 20px;
+}
+.coin-stats .label{ 
+  font-family: 'IBM Plex Sans', sans-serif;
+  color: #999;
+  font-size: 14px;
+  margin-bottom: 6px;
+  font-weight: 400;
+}
+.coin-stats .value{ 
+  font-family: 'IBM Plex Mono', monospace;
+  color: #ffffff;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.coin-desc{ 
+  margin-top: 20px;
+  font-family: 'IBM Plex Sans', sans-serif;
+  color: #cccccc;
+  line-height: 1.7;
+  font-size: 15px;
+  background: transparent; 
+  border: none;
+  padding: 0;
+  border-radius: 0;
+}
+
+
+@media (max-width: 900px) {
+  .coin.container { padding: 16px; margin: 28px auto; }
+  .coin-header h1 { font-size: 28px; }
+  .coin-header img { width: 28px; height: 28px; }
+  .coin-stats { grid-template-columns: 1fr; gap: 12px; padding: 16px; }
+}
+
+@media (max-width: 640px) {
+  .coin.container { padding: 14px; margin: 20px auto; }
+  .coin-header h1 { font-size: 24px; }
+  .coin-header h1 span { font-size: 14px; }
+  .coin-header img { width: 24px; height: 24px; }
+  .coin-stats .value { font-size: 18px; }
+  .coin-stats .label { font-size: 13px; }
+  .coin-desc { font-size: 14px; line-height: 1.65; }
+}
+
+.coin.container.error{ 
+  font-family: 'IBM Plex Sans', sans-serif;
+  color: #ff6b6b;
+  background: rgba(20, 25, 35, 0.8);
+  border: 1px solid rgba(255, 107, 107, 0.3);
+  padding: 12px 16px;
+  border-radius: 8px;
+}
