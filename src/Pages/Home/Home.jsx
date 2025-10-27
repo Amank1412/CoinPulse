@@ -27,19 +27,41 @@ const Home = () => {
     return list.slice(0, 100);
   }, [allCoins, query]);
 
+  const firstCoinId = topCoins && topCoins.length > 0 ? topCoins[0].id : null;
+
   return (
     <div className='home'>
-      <div className="hero">
-        <h1>Grow Your Crypto with CoinPulse <br/></h1>
-        <p>CoinPulse is the right real-time crypto tracker you can trust. Get accurate, instant updates on all major cryptocurrencies no delays, no noise. Just clean, reliable market data to help you stay ahead.</p>
-        <form onSubmit={(e)=>e.preventDefault()} className="search-wrapper">
+      <div className="hero hero-landing">
+  <h1>Track wallet and exchange <br/>simplify your crypto life.</h1>
+  <p className="subtitle">Connect your entire wallet to track, buy, swap, and stake your assets.</p>
+
+        <div className="wallet-cards">
+          <div className="card">
+            <div className="card-ill"><img className="wallet-logo" src="https://assets.coingecko.com/coins/images/825/small/binance-coin-logo.png" alt="Binance"/></div>
+            <div className="card-title">Binance</div>
+            <div className="card-cta">Connect →</div>
+          </div>
+          <div className="card">
+            <div className="card-ill">🦊</div>
+            <div className="card-title">MetaMask</div>
+            <div className="card-cta">Connect →</div>
+          </div>
+          
+          <div className="card">
+            <div className="card-ill">✨</div>
+            <div className="card-title">Other</div>
+            <div className="card-cta">Connect →</div>
+          </div>
+        </div>
+
+        <form onSubmit={(e)=>e.preventDefault()} className="search-wrapper hero-search">
           <input
             type="text"
             value={query}
             onChange={(e)=>setQuery(e.target.value)}
             onFocus={()=>setOpen(true)}
             onBlur={()=>setTimeout(()=>setOpen(false), 120)}
-            placeholder='Search crypto..'
+            placeholder='Search wallet addresses, assets on any blockchain'
           />
           <button type="submit" onMouseDown={(e)=>{ e.preventDefault(); setOpen(true); }}>Search</button>
           {open && suggestions.length > 0 && (
@@ -59,26 +81,28 @@ const Home = () => {
           )}
         </form>
       </div>
+
       <div className="crypto-table">
-        <div className="table-layout">
+        <div className="crypto-box">
+          <div className="table-layout">
           <p>#</p>
           <p>Coins</p>
           <p>Price</p>
           <p>24H Change</p>
           <p>Market Cap</p>
           <p>Price Graph</p>
-        </div>
+          </div>
         {loading && <div className="table-row loading">Loading coins...</div>}
         {error && <div className="table-row error">{error}</div>}
-        {!loading && !error && filtered && filtered.length > 0 && filtered.map((coin, idx) => (
+        {!loading && !error && topCoins && topCoins.length > 0 && topCoins.slice(0,5).map((coin, idx) => (
           <Link className="table-layout row" key={coin.id} to={`/coin/${coin.id}`}>
             <p>{idx + 1}</p>
             <p style={{display: 'flex', alignItems: 'center', gap: '10px'}}>
-              <img src={coin.image} alt={coin.name} style={{width: '24px', height: '24px'}} />
+              <img src={coin.image} alt={coin.name} style={{width: '28px', height: '28px'}} />
               {coin.name} <span style={{color: '#888', fontSize: '13px'}}>{coin.symbol.toUpperCase()}</span>
             </p>
             <p>{currency.symbol}{coin.current_price.toLocaleString()}</p>
-            <p style={{color: coin.price_change_percentage_24h >= 0 ? 'green' : 'red'}}>
+            <p style={{color: coin.price_change_percentage_24h >= 0 ? '#16a34a' : '#dc2626'}}>
               {coin.price_change_percentage_24h?.toFixed(2)}%
             </p>
             <p>{currency.symbol}{coin.market_cap.toLocaleString()}</p>
@@ -93,6 +117,12 @@ const Home = () => {
             </p>
           </Link>
         ))}
+          <div className="see-more-wrap">
+            {
+              <button className="see-more" onClick={()=>navigate('/cryptocurrencies')}>See More Coins</button>
+            }
+          </div>
+        </div>
       </div>
     </div>
   );

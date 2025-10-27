@@ -26,16 +26,17 @@ const Navbar = () => {
   }
 
   return (
-    <div className='navbar'>
+    <>
+      <div className='navbar'>
       <Link to="/" className="brand" style={{ textDecoration: 'none' }}>
         <img src={logo} alt="logo" className="brand-logo" />
         <span className="logo-text">CoinPulse</span>
       </Link>
       <ul>
-        <li>Home</li>
+        <li><Link to="/">Home</Link></li>
         <li>Features</li>
         <li>Pricing</li>
-        <li>Blog</li>
+        <li><Link to="/cryptocurrencies">Cryptocurrencies</Link></li>
       </ul>
       <div className="nav-right">
         <select
@@ -55,7 +56,8 @@ const Navbar = () => {
         </select>
         <button>Sign up</button>
       </div>
-    </div>
+      </div>
+    </>
   )
 }
 
